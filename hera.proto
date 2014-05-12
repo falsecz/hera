@@ -1,0 +1,26 @@
+message StatusRequest {
+	required int32 test = 1;
+}
+message StatusResponse {
+	required int32 rss = 1;
+	required string ok = 2;
+}
+
+enum PayloadType {
+	JSON = 1;
+	PROTO = 2;
+}
+
+message ApiRequest {
+	required PayloadType type = 1;
+	required bytes payload = 2;
+}
+
+message ApiResponse {
+	required bytes payload = 1;
+}
+
+service HeraRPC {
+   rpc status(StatusRequest) returns(StatusResponse);
+   rpc api(ApiRequest) returns(ApiResponse);
+}
